@@ -9,6 +9,7 @@ public class MovimentPlayer : MonoBehaviour
     float input_y = 0;
     float speed = 2.5f;
 
+    public Animator animation;
     Rigidbody2D rb2D;
     Vector2 movement = Vector2.zero;
 
@@ -16,6 +17,7 @@ public class MovimentPlayer : MonoBehaviour
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        animation = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -24,10 +26,21 @@ public class MovimentPlayer : MonoBehaviour
         input_x = Input.GetAxisRaw("Horizontal");
         input_y = Input.GetAxisRaw("Vertical");
         movement = new Vector2(input_x, input_y);
+
+        animation.SetFloat("Horizontal", input_x);
+        animation.SetFloat("Vertical", input_y);
+        animation.SetFloat("Velocidade", movement.sqrMagnitude);
+
+        if(movement != Vector2.zero)
+        {
+            animation.SetFloat("HorizontalIdle", input_x);
+            animation.SetFloat("VerticalIdle", input_y);
+        }
+
     }
 
     private void FixedUpdate() 
     {
-        rb2D.MovePosition(rb2D.position + movement * speed * Time.deltaTime);
+        rb2D.MovePosition(rb2D.position + movement * speed * Time.fixedDeltaTime);
     }
 }
