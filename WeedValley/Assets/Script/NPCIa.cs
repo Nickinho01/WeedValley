@@ -10,19 +10,23 @@ public class NPCIa : MonoBehaviour
     private Rigidbody2D myRigidbody;
     public float frequency = 1f;
     public BoxCollider2D bc;
+    public Animator animation;
+
+    
     // Start is called before the first frame update
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myTransform = GetComponent<Transform>();
         bc = GetComponent<BoxCollider2D>();
+        animation = GetComponent<Animator>();
         InvokeRepeating("ChangeDiretion", 0, frequency);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        
     }
 
     private void Move()
