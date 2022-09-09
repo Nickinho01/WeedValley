@@ -58,7 +58,7 @@ public class NPCIa : MonoBehaviour
         if(collision.gameObject.tag == "Parede")
         {
             //ChangeDiretion();
-            Destroy(this);
+            speed = 10f;
             
         }
     }
