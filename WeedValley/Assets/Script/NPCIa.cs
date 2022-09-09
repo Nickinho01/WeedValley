@@ -9,11 +9,13 @@ public class NPCIa : MonoBehaviour
     public float speed;
     private Rigidbody2D myRigidbody;
     public float frequency = 1f;
+    public BoxCollider2D bc;
     // Start is called before the first frame update
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         myTransform = GetComponent<Transform>();
+        bc = GetComponent<BoxCollider2D>();
         InvokeRepeating("ChangeDiretion", 0, frequency);
     }
 
@@ -51,4 +53,13 @@ public class NPCIa : MonoBehaviour
             break;
     }
 }
+    private void onTriggerEnter(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Parede")
+        {
+            //ChangeDiretion();
+            Destroy(this);
+            
+        }
+    }
 }
