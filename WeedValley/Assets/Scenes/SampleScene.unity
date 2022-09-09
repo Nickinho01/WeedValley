@@ -1357,6 +1357,7 @@ GameObject:
   - component: {fileID: 1957662041}
   - component: {fileID: 1957662040}
   - component: {fileID: 1957662044}
+  - component: {fileID: 1957662045}
   m_Layer: 6
   m_Name: Klebin
   m_TagString: Untagged
@@ -1379,6 +1380,7 @@ MonoBehaviour:
   speed: 3
   frequency: 1
   bc: {fileID: 0}
+  animation: {fileID: 0}
 --- !u!50 &1957662041
 Rigidbody2D:
   serializedVersion: 4
@@ -1493,6 +1495,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.605618, y: 0.3520468}
   m_EdgeRadius: 0
+--- !u!95 &1957662045
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957662039}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a3caeccf32b62b4fb4e0d7e642bd6d1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2047481934
 GameObject:
   m_ObjectHideFlags: 0
