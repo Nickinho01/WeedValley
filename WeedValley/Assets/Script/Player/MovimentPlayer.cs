@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovimentPlayer : MonoBehaviour
 {
+    HUD_Control hControl;
     float input_x = 0;
     float input_y = 0;
     float speed = 2.5f;
@@ -16,6 +17,7 @@ public class MovimentPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hControl = HUD_Control.hControl;
         rb2D = GetComponent<Rigidbody2D>();
         animation = GetComponent<Animator>();
     }
@@ -35,6 +37,10 @@ public class MovimentPlayer : MonoBehaviour
         {
             animation.SetFloat("HorizontalIdle", input_x);
             animation.SetFloat("VerticalIdle", input_y);
+        }
+
+        if(Input.GetKeyDown("q")){
+            print(HUD_Control.droga_Select);
         }
 
     }

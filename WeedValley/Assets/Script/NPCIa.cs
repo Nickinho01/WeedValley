@@ -26,6 +26,7 @@ public class NPCIa : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Move();
         
     }
 
@@ -43,26 +44,33 @@ public class NPCIa : MonoBehaviour
     {
         case 0:
             directionVector =  Vector2.right;
+            animation.SetFloat("Horizontal", 1);
+            animation.SetFloat("Vertical", 0);
             break;
         case 1:
             directionVector = Vector2.up;
+            animation.SetFloat("Vertical", 1);
+            animation.SetFloat("Horizontal", 0);
             break;
         case 3:
             directionVector = Vector2.left;
+            animation.SetFloat("Horizontal", -1);
+            animation.SetFloat("Vertical", 0);
             break;
         case 4:
             directionVector = Vector2.down;
+            animation.SetFloat("Vertical", -1);
+            animation.SetFloat("Horizontal", 0);
             break;
         default:
             break;
     }
 }
-    private void onTriggerEnter(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Parede")
         {
-            //ChangeDiretion();
-            speed = 10f;
+            ChangeDiretion();
             
         }
     }
