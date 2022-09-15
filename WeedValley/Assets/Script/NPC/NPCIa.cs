@@ -5,36 +5,64 @@ using UnityEngine;
 public class NPCIa : MonoBehaviour
 {
     private Vector2 directionVector;
-    private Transform myTransform;
     public float speed;
     private Rigidbody2D myRigidbody;
-    public float frequency = 1f;
     public BoxCollider2D bc;
     public Animator animation;
+    public static int order;
+    bool Walking = true;
+    public GameObject exit;
 
     
     // Start is called before the first frame update
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        myTransform = GetComponent<Transform>();
         bc = GetComponent<BoxCollider2D>();
         animation = GetComponent<Animator>();
-        InvokeRepeating("ChangeDiretion", 0, frequency);
+        if(Walking){
+            InvokeRepeating("ChangeDiretion", 0, 1f);
+        }
+        order = Order();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if(Walking){
+            Move();
+        } else {
+            Exit();
+        }
         
+    }
+    void FixedUpdate(){
+        
+    }
+
+    public static int Order()
+    {
+        int drug = Random.Range(1, 4);
+        print(drug);
+        return drug;
     }
 
     private void Move()
     {
+        if(Walking){
+            myRigidbody.MovePosition(myRigidbody.position + directionVector * speed * Time.deltaTime); 
+        }
+    }
 
-            myRigidbody.MovePosition(myRigidbody.position+ directionVector * speed * Time.deltaTime); 
-        
+    private void Exit()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, exit.transform.position, speed * Time.deltaTime); 
+
+        if(transform.position == exit.transform.position){
+            speed = 0;
+            print(speed);
+
+        }
     }
 
     void ChangeDiretion()
@@ -66,12 +94,21 @@ public class NPCIa : MonoBehaviour
             break;
     }
 }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Parede")
         {
             ChangeDiretion();
-            
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player"){
+            if(HUD_Control.droga_Select == order)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
+

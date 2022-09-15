@@ -18,12 +18,14 @@ public class Drogas : MonoBehaviour
     {
         if(Input.GetKeyDown("e") && drugSelect){
                 HUD_Control.droga_Select = value_Drug;
+                print(HUD_Control.droga_Select);
             }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player"){
+            print("Entering");
             GetComponent<Animator>().SetBool("Select", true);
             drugSelect = true;
         }
