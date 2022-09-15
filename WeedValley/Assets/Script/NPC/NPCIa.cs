@@ -12,6 +12,8 @@ public class NPCIa : MonoBehaviour
     public static int order;
     bool Walking = true;
     public GameObject exit;
+    public GameObject NPC;
+    bool isDrug = false;
 
     
     // Start is called before the first frame update
@@ -31,7 +33,7 @@ public class NPCIa : MonoBehaviour
     {
         if(Walking){
             Move();
-        } else {
+        } else{
             Exit();
         }
         
@@ -57,12 +59,6 @@ public class NPCIa : MonoBehaviour
     private void Exit()
     {
         transform.position = Vector2.MoveTowards(transform.position, exit.transform.position, speed * Time.deltaTime); 
-
-        if(transform.position == exit.transform.position){
-            speed = 0;
-            print(speed);
-
-        }
     }
 
     void ChangeDiretion()
@@ -100,13 +96,31 @@ public class NPCIa : MonoBehaviour
         {
             ChangeDiretion();
         }
+        if(collision.gameObject.tag == "Exit"){
+            if(isDrug)
+            {
+                Destroy(gameObject);
+                Spawn.NpcInRoom = false;
+                print("foi");
+            }
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player"){
             if(HUD_Control.droga_Select == order)
             {
+                isDrug = true;
+                Walking = false;
+            }
+        }
+
+        if(collision.gameObject.tag == "Exit"){
+            if(isDrug)
+            {
                 Destroy(gameObject);
+                Spawn.NpcInRoom = false;
+                print("foi");
             }
         }
     }

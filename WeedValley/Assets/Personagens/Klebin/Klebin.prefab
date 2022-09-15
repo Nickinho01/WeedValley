@@ -286,7 +286,8 @@ MonoBehaviour:
   speed: 3
   bc: {fileID: 5363231162663814770}
   animation: {fileID: 0}
-  exit: {fileID: 0}
+  exit: {fileID: 4741352006264206029, guid: 187b7da4f4a4a72498229f3e08f34f89, type: 3}
+  NPC: {fileID: 5363231163081930496}
 --- !u!61 &5363231163081930507
 BoxCollider2D:
   m_ObjectHideFlags: 0
